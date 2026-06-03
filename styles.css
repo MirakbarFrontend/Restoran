@@ -1082,3 +1082,128 @@ body {
 	border-top: 1px solid rgba(255, 255, 255, 0.05);
 	padding-top: 10px;
 }
+
+/* LOADING */
+.loader {
+	position: fixed;
+	inset: 0;
+	background: #0f0f0f;
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: opacity 0.5s ease;
+}
+
+.loader.hide {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.loader-content {
+	text-align: center;
+}
+
+.loader-icon {
+	font-size: 3rem;
+	color: #d4a843;
+	margin-bottom: 20px;
+	animation: spin 1.5s infinite ease-in-out;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg) scale(1);
+	}
+	50% {
+		transform: rotate(180deg) scale(1.2);
+	}
+	100% {
+		transform: rotate(360deg) scale(1);
+	}
+}
+
+.loader-bar {
+	width: 200px;
+	height: 4px;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+	margin: 0 auto 15px;
+	overflow: hidden;
+}
+
+.loader-fill {
+	height: 100%;
+	background: #d4a843;
+	border-radius: 4px;
+	animation: fill 2s ease forwards;
+}
+
+@keyframes fill {
+	from {
+		width: 0%;
+	}
+	to {
+		width: 100%;
+	}
+}
+
+.loader-content p {
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 0.9rem;
+	animation: blink 1s infinite;
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.3;
+	}
+}
+
+/* TAOMLAR ANIMATSIYASI */
+.menu-card {
+	opacity: 0;
+	transform: translateY(30px);
+}
+
+.menu-card.visible {
+	animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+/* HERO ANIMATSIYA */
+.hero h1 {
+	opacity: 0;
+	transform: translateY(30px);
+	animation: heroText 1s ease 2.2s forwards;
+}
+
+.hero p {
+	opacity: 0;
+	transform: translateY(30px);
+	animation: heroText 1s ease 2.5s forwards;
+}
+
+@keyframes heroText {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

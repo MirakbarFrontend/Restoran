@@ -431,3 +431,31 @@ function renderHistory() {
 		)
 		.join('');
 }
+// Loading animatsiyasi
+window.addEventListener('load', function () {
+	setTimeout(() => {
+		const loader = document.getElementById('loader');
+		loader.classList.add('hide');
+		setTimeout(() => {
+			loader.style.display = 'none';
+		}, 500);
+	}, 2000);
+});
+// Taomlar birma-bir chiqishi
+const observer = new IntersectionObserver(
+	entries => {
+		entries.forEach((entry, index) => {
+			if (entry.isIntersecting) {
+				setTimeout(() => {
+					entry.target.classList.add('visible');
+				}, index * 100);
+				observer.unobserve(entry.target);
+			}
+		});
+	},
+	{ threshold: 0.1 },
+);
+
+document.querySelectorAll('.menu-card').forEach(card => {
+	observer.observe(card);
+});
