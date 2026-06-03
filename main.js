@@ -376,24 +376,11 @@ window.onload = function () {
 
 	if (tableFromUrl) {
 		selectedTable = tableFromUrl;
-		document.querySelector('.table-info span').textContent = 'Stol #' + tableFromUrl;
-		document.getElementById('tableModal').style.display = 'none';
-	} else {
-		document.getElementById('tableModal').style.display = 'flex';
+		document.getElementById('tableNum').textContent = 'Stol #' + tableFromUrl;
 	}
-};
-// window.onload = function () {
-// 	const urlParams = new URLSearchParams(window.location.search);
-// 	const tableFromUrl = urlParams.get('table');
 
-// 	if (tableFromUrl) {
-// 		selectedTable = tableFromUrl;
-// 		document.querySelector('.table-info span').textContent = 'Stol #' + tableFromUrl;
-// 		document.getElementById('tableModal').style.display = 'none';
-// 	} else {
-// 		document.getElementById('tableModal').style.display = 'flex';
-// 	}
-// };
+	document.getElementById('tableModal').style.display = 'none';
+};
 // Buyurtma tarixi
 let orderHistory = [];
 let orderCount = 0;
