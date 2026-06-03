@@ -368,13 +368,7 @@ function closeDetail() {
 	document.getElementById('detailOverlay').classList.remove('active');
 	document.getElementById('detailModal').classList.remove('active');
 }
-// Stol raqami
-let selectedTable = null;
-function selectTable(num) {
-	selectedTable = num;
-	document.getElementById('tableModal').style.display = 'none';
-	document.querySelector('.table-info span').textContent = 'Stol #' + num;
-}
+
 
 // Sahifa ochilganda stol tanlash modali chiqadi
 window.onload = function () {
