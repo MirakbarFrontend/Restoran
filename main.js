@@ -369,10 +369,18 @@ function closeDetail() {
 	document.getElementById('detailModal').classList.remove('active');
 }
 
-
 // Sahifa ochilganda stol tanlash modali chiqadi
 window.onload = function () {
-	document.getElementById('tableModal').style.display = 'flex';
+	const urlParams = new URLSearchParams(window.location.search);
+	const tableFromUrl = urlParams.get('table');
+
+	if (tableFromUrl) {
+		selectedTable = tableFromUrl;
+		document.querySelector('.table-info span').textContent = 'Stol #' + tableFromUrl;
+		document.getElementById('tableModal').style.display = 'none';
+	} else {
+		document.getElementById('tableModal').style.display = 'flex';
+	}
 };
 // window.onload = function () {
 // 	const urlParams = new URLSearchParams(window.location.search);
