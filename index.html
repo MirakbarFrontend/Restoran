@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="uz">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Restoran Menyu</title>
+		<link rel="stylesheet" href="styles.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+	</head>
+	<body>
+		<!-- HEADER -->
+		<header class="header">
+			<div class="header-content">
+				<div class="logo">
+					<i class="fas fa-utensils"></i>
+					<span>Bella Vista</span>
+				</div>
+				<div class="table-info">
+					<i class="fas fa-chair"></i>
+					<span>Stol #5</span>
+				</div>
+			</div>
+		</header>
+		<!-- STOL TANLASH MODAL -->
+		<div class="table-modal" id="tableModal">
+			<div class="table-content">
+				<div class="table-icon"><i class="fas fa-chair"></i></div>
+				<h2>Stol raqamini tanlang</h2>
+				<p>Buyurtmangiz to'g'ri stolga yetkazilishi uchun</p>
+				<div class="table-grid">
+					<button class="table-num" onclick="selectTable(1)">1</button>
+					<button class="table-num" onclick="selectTable(2)">2</button>
+					<button class="table-num" onclick="selectTable(3)">3</button>
+					<button class="table-num" onclick="selectTable(4)">4</button>
+					<button class="table-num" onclick="selectTable(5)">5</button>
+					<button class="table-num" onclick="selectTable(6)">6</button>
+					<button class="table-num" onclick="selectTable(7)">7</button>
+					<button class="table-num" onclick="selectTable(8)">8</button>
+					<button class="table-num" onclick="selectTable(9)">9</button>
+					<button class="table-num" onclick="selectTable(10)">10</button>
+					<button class="table-num" onclick="selectTable(11)">11</button>
+					<button class="table-num" onclick="selectTable(12)">12</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- HERO -->
+		<section class="hero">
+			<div class="hero-content">
+				<h1>Xush kelibsiz!</h1>
+				<p>Mazali taomlarimizdan birini tanlang</p>
+			</div>
+		</section>
+		<!-- MAXSUS TAKLIFLAR -->
+		<section class="offers">
+			<div class="container">
+				<h2 class="section-title">🔥 Maxsus takliflar</h2>
+				<div class="offers-grid">
+					<div class="offer-card">
+						<div class="offer-discount">-20%</div>
+						<img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400" alt="" />
+						<div class="offer-body">
+							<h3>Grill Tovuq</h3>
+							<div class="offer-prices">
+								<span class="old-price">85 000 so'm</span>
+								<span class="new-price">68 000 so'm</span>
+							</div>
+							<button class="offer-btn" onclick="addToCart('Grill Tovuq', 68000)"><i class="fas fa-plus"></i> Qo'shish</button>
+						</div>
+					</div>
+
+					<div class="offer-card">
+						<div class="offer-discount">-15%</div>
+						<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="" />
+						<div class="offer-body">
+							<h3>Premium Burger</h3>
+							<div class="offer-prices">
+								<span class="old-price">72 000 so'm</span>
+								<span class="new-price">61 000 so'm</span>
+							</div>
+							<button class="offer-btn" onclick="addToCart('Premium Burger', 61000)"><i class="fas fa-plus"></i> Qo'shish</button>
+						</div>
+					</div>
+
+					<div class="offer-card">
+						<div class="offer-discount">-25%</div>
+						<img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400" alt="" />
+						<div class="offer-body">
+							<h3>Tiramisu</h3>
+							<div class="offer-prices">
+								<span class="old-price">35 000 so'm</span>
+								<span class="new-price">26 000 so'm</span>
+							</div>
+							<button class="offer-btn" onclick="addToCart('Tiramisu', 26000)"><i class="fas fa-plus"></i> Qo'shish</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- CATEGORY TABS -->
+		<section class="categories">
+			<div class="container">
+				<div class="tabs">
+					<button class="tab active" data-category="all">Barchasi</button>
+					<button class="tab" data-category="salad">Salatlar</button>
+					<button class="tab" data-category="main">Asosiy</button>
+					<button class="tab" data-category="dessert">Shirinliklar</button>
+					<button class="tab" data-category="drink">Ichimliklar</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- MENU ITEMS -->
+		<section class="menu">
+			<div class="container">
+				<div class="menu-grid" id="menuGrid">
+					<!-- SALATLAR -->
+					<div class="menu-card" data-category="salad">
+						<div class="card-img" onclick="openDetail('Cezar Salati')">
+							<img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400" alt="Salat" />
+							<div class="card-badge">Mashhur</div>
+						</div>
+						<div class="card-body">
+							<h3>Cezar Salati</h3>
+							<p>Yangi ko'katlar, tovuq, kroutonlar, parmezan</p>
+							<div class="card-footer">
+								<span class="price">45 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Cezar Salati', 45000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="salad">
+						<div class="card-img" onclick="openDetail('Grek Salati')">
+							<img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400" alt="Salat" />
+						</div>
+						<div class="card-body">
+							<h3>Grek Salati</h3>
+							<p>Pomidor, bodring, zaytun, feta pishloq</p>
+							<div class="card-footer">
+								<span class="price">38 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Grek Salati', 38000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="menu-card" data-category="salad">
+						<div class="card-img" onclick="openDetail('Vinegret')">
+							<img src="https://images.unsplash.com/photo-1529059997568-3d847b1154f0?w=400" alt="Salat" />
+						</div>
+						<div class="card-body">
+							<h3>Vinegret</h3>
+							<p>Lavlagi, kartoshka, sabzi, no'xat</p>
+							<div class="card-footer">
+								<span class="price">28 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Vinegret', 28000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="salad">
+						<div class="card-img" onclick="openDetail('Olivye')">
+							<img src="https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?w=400" alt="Salat" />
+							<div class="card-badge">Mashhur</div>
+						</div>
+						<div class="card-body">
+							<h3>Olivye</h3>
+							<p>Kartoshka, kolbasa, mayonez, no'xat</p>
+							<div class="card-footer">
+								<span class="price">32 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Olivye', 32000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="salad">
+						<div class="card-img" onclick="openDetail('Tuna Salati')">
+							<img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400" alt="Salat" />
+						</div>
+						<div class="card-body">
+							<h3>Tuna Salati</h3>
+							<p>Tuna baliq, pomidor, bodring, zaytun</p>
+							<div class="card-footer">
+								<span class="price">42 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Tuna Salati', 42000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- ASOSIY TAOMLAR -->
+					<div class="menu-card" data-category="main">
+						<div class="card-img" onclick="openDetail('Grill Tovuq')">
+							<img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400" alt="Taom" />
+							<div class="card-badge">Chef tavsiyasi</div>
+						</div>
+						<div class="card-body">
+							<h3>Grill Tovuq</h3>
+							<p>Grill tovuq, sabzavotlar, kartoshka</p>
+							<div class="card-footer">
+								<span class="price">85 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Grill Tovuq', 85000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="main">
+						<div class="card-img" onclick="openDetail('Osh')">
+							<img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400" alt="Taom" />
+						</div>
+						<div class="card-body">
+							<h3>Osh</h3>
+							<p>An'anaviy o'zbek oshi, go'sht, sabzi</p>
+							<div class="card-footer">
+								<span class="price">55 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Osh', 55000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="main">
+						<div class="card-img" onclick="openDetail('Premium Burger')">
+							<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Burger" />
+							<div class="card-badge">Yangi</div>
+						</div>
+						<div class="card-body">
+							<h3>Premium Burger</h3>
+							<p>Mol go'shti, pishloq, pomidor, salat</p>
+							<div class="card-footer">
+								<span class="price">72 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Premium Burger', 72000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="menu-card" data-category="main">
+						<div class="card-img" onclick="openDetail('Lag\'mon')">
+							<img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400" alt="Taom" />
+							<div class="card-badge">Mashhur</div>
+						</div>
+						<div class="card-body">
+							<h3>Lag'mon</h3>
+							<p>Qo'lda cho'zilgan xamir, go'sht, sabzavotlar</p>
+							<div class="card-footer">
+								<span class="price">48 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Lag\'mon', 48000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="main">
+						<div class="card-img" onclick="openDetail('Sho\'rva')">
+							<img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=400" alt="Taom" />
+						</div>
+						<div class="card-body">
+							<h3>Sho'rva</h3>
+							<p>Qo'y go'shti, sabzavotlar, ziravorlar</p>
+							<div class="card-footer">
+								<span class="price">42 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Sho\'rva', 42000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="main">
+						<div class="card-img" onclick="openDetail('Kabob')">
+							<img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400" alt="Taom" />
+							<div class="card-badge">Chef tavsiyasi</div>
+						</div>
+						<div class="card-body">
+							<h3>Kabob</h3>
+							<p>Qo'y go'shtidan tayyorlangan, tandirda pishirilgan</p>
+							<div class="card-footer">
+								<span class="price">65 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Kabob', 65000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="main">
+						<div class="card-img" onclick="openDetail('Pizza Margarita')">
+							<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400" alt="Pizza" />
+							<div class="card-badge">Yangi</div>
+						</div>
+						<div class="card-body">
+							<h3>Pizza Margarita</h3>
+							<p>Pomidor sous, mozzarella, yangi rayhon</p>
+							<div class="card-footer">
+								<span class="price">78 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Pizza Margarita', 78000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- SHIRINLIKLAR -->
+					<div class="menu-card" data-category="dessert">
+						<div class="card-img" onclick="openDetail('Tiramisu')">
+							<img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400" alt="Desert" />
+						</div>
+						<div class="card-body">
+							<h3>Tiramisu</h3>
+							<p>Italyan klassik deserti, krem, kakao</p>
+							<div class="card-footer">
+								<span class="price">35 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Tiramisu', 35000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="menu-card" data-category="dessert">
+						<div class="card-img" onclick="openDetail('Shokoladli Tort')">
+							<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400" alt="Tort" />
+							<div class="card-badge">Mashhur</div>
+						</div>
+						<div class="card-body">
+							<h3>Shokoladli Tort</h3>
+							<p>Qora shokolad, krem, gilos</p>
+							<div class="card-footer">
+								<span class="price">40 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Shokoladli Tort', 40000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="dessert">
+						<div class="card-img" onclick="openDetail('Krep')">
+							<img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?w=400" alt="Krep" />
+						</div>
+						<div class="card-body">
+							<h3>Krep</h3>
+							<p>Yupqa xamir, asal, rezavorlar</p>
+							<div class="card-footer">
+								<span class="price">25 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Krep', 25000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="dessert">
+						<div class="card-img" onclick="openDetail('Muzqaymoq')">
+							<img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400" alt="Muzqaymoq" />
+						</div>
+						<div class="card-body">
+							<h3>Muzqaymoq</h3>
+							<p>Vanil, shokolad, rezavorlar bilan</p>
+							<div class="card-footer">
+								<span class="price">20 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Muzqaymoq', 20000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- ICHIMLIKLAR -->
+					<div class="menu-card" data-category="drink">
+						<div class="card-img" onclick="openDetail('Limonad')">
+							<img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400" alt="Ichimlik" />
+						</div>
+						<div class="card-body">
+							<h3>Limonad</h3>
+							<p>Yangi limon, nane, gazlangan suv</p>
+							<div class="card-footer">
+								<span class="price">18 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Limonad', 18000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="drink">
+						<div class="card-img" onclick="openDetail('Kapuchino')">
+							<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400" alt="Kofe" />
+						</div>
+						<div class="card-body">
+							<h3>Kapuchino</h3>
+							<p>Espresso, issiq sut ko'pigi</p>
+							<div class="card-footer">
+								<span class="price">22 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Kapuchino', 22000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="menu-card" data-category="drink">
+						<div class="card-img" onclick="openDetail('Smoothie')">
+							<img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400" alt="Smoothie" />
+							<div class="card-badge">Yangi</div>
+						</div>
+						<div class="card-body">
+							<h3>Smoothie</h3>
+							<p>Meva va rezavorlardan tayyorlangan</p>
+							<div class="card-footer">
+								<span class="price">25 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Smoothie', 25000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="menu-card" data-category="drink">
+						<div class="card-img" onclick="openDetail('Choy')">
+							<img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400" alt="Choy" />
+						</div>
+						<div class="card-body">
+							<h3>Ko'k Choy</h3>
+							<p>Xushbo'y ko'k choy, nane bilan</p>
+							<div class="card-footer">
+								<span class="price">12 000 so'm</span>
+								<button class="add-btn" onclick="addToCart('Choy', 12000)">
+									<i class="fas fa-plus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CART -->
+		<div class="cart-btn" id="cartBtn" onclick="toggleCart()">
+			<i class="fas fa-shopping-basket"></i>
+			<span class="cart-count" id="cartCount">0</span>
+		</div>
+
+		<!-- CART MODAL -->
+		<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+		<div class="cart-modal" id="cartModal">
+			<div class="cart-header">
+				<h2>Buyurtmangiz</h2>
+				<button onclick="toggleCart()"><i class="fas fa-times"></i></button>
+			</div>
+			<div class="cart-items" id="cartItems"></div>
+			<div class="cart-total">
+				<span>Jami:</span>
+				<span id="cartTotal">0 so'm</span>
+			</div>
+			<button class="order-btn" onclick="placeOrder()">Buyurtma qilish</button>
+		</div>
+
+		<!-- SUCCESS MODAL -->
+		<div class="success-modal" id="successModal">
+			<div class="success-content">
+				<div class="success-icon"><i class="fas fa-check-circle"></i></div>
+				<h2>Buyurtma qabul qilindi!</h2>
+				<p>Xodimimiz tez orada keladi</p>
+				<button onclick="closeSuccess()">Yaxshi</button>
+			</div>
+		</div>
+
+		<!-- TAOM DETAIL MODAL -->
+		<div class="detail-overlay" id="detailOverlay" onclick="closeDetail()"></div>
+		<div class="detail-modal" id="detailModal">
+			<button class="detail-close" onclick="closeDetail()"><i class="fas fa-times"></i></button>
+			<div class="detail-img">
+				<img id="detailImg" src="" alt="" />
+			</div>
+			<div class="detail-body">
+				<div class="detail-badge" id="detailBadge"></div>
+				<h2 id="detailName"></h2>
+				<p id="detailDesc"></p>
+				<div class="detail-ingredients">
+					<h4>Tarkibi:</h4>
+					<div class="ingredients-list" id="detailIngredients"></div>
+				</div>
+				<div class="detail-footer">
+					<span class="detail-price" id="detailPrice"></span>
+					<button class="detail-add-btn" id="detailAddBtn"><i class="fas fa-plus"></i> Savatga qo'shish</button>
+				</div>
+			</div>
+		</div>
+		<!-- BUYURTMA TARIXI -->
+		<div class="history-overlay" id="historyOverlay" onclick="toggleHistory()"></div>
+		<div class="history-modal" id="historyModal">
+			<div class="cart-header">
+				<h2>Buyurtma tarixi</h2>
+				<button onclick="toggleHistory()"><i class="fas fa-times"></i></button>
+			</div>
+			<div class="history-items" id="historyItems">
+				<p class="empty-history">Hali buyurtma yo'q</p>
+			</div>
+		</div>
+
+		<!-- HISTORY BUTTON -->
+		<div class="history-btn" onclick="toggleHistory()">
+			<i class="fas fa-history"></i>
+		</div>
+
+		<script src="main.js"></script>
+	</body>
+</html>
