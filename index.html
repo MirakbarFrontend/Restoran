@@ -469,14 +469,31 @@
 		</div>
 
 		<!-- SUCCESS MODAL -->
-		<div class="success-modal" id="successModal">
-			<div class="success-content">
-				<div class="success-icon"><i class="fas fa-check-circle"></i></div>
-				<h2>Buyurtmangiz muvaffaqiyatli yuborildi</h2>
-				<p>Oshpazlarimiz buyurtmangizni tayyorlashni boshlashdi. Xodimimiz tez orada stolingizga xizmat ko‘rsatadi.</p>
-				<button onclick="closeSuccess()">Yaxshi</button>
-			</div>
-		</div>
+		<!-- SUCCESS MODAL -->
+<div class="success-modal" id="successModal">
+    <div class="success-content">
+        <div class="success-icon" id="successIcon"><i class="fas fa-check-circle"></i></div>
+        <h2 id="successTitle">Buyurtma qabul qilindi!</h2>
+        <p id="successDesc">Oshxonaga yuborildi, kuting...</p>
+        <div class="order-status-bar">
+            <div class="status-step active" id="step1">
+                <div class="step-icon"><i class="fas fa-check"></i></div>
+                <div class="step-label">Qabul qilindi</div>
+            </div>
+            <div class="status-line" id="line1"></div>
+            <div class="status-step" id="step2">
+                <div class="step-icon"><i class="fas fa-fire"></i></div>
+                <div class="step-label">Tayyorlanmoqda</div>
+            </div>
+            <div class="status-line" id="line2"></div>
+            <div class="status-step" id="step3">
+                <div class="step-icon"><i class="fas fa-bell"></i></div>
+                <div class="step-label">Tayyor!</div>
+            </div>
+        </div>
+        <button onclick="closeSuccess()" id="successBtn" style="display:none">Yaxshi</button>
+    </div>
+</div>
 
 		<!-- TAOM DETAIL MODAL -->
 		<div class="detail-overlay" id="detailOverlay" onclick="closeDetail()"></div>

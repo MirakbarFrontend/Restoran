@@ -1,3 +1,4 @@
+let selectedTable = null;
 // Cart data
 let cart = [];
 
@@ -114,7 +115,6 @@ function placeOrder() {
 	const now = new Date();
 	const time = now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
 	const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
 	orderHistory.unshift({
 		num: orderCount,
 		table: selectedTable || '?',
@@ -123,6 +123,16 @@ function placeOrder() {
 		total: total,
 	});
 
+	// LocalStorage ga saqlash
+	const savedOrders = JSON.parse(localStorage.getItem('restaurantOrders')) || [];
+	savedOrders.push({
+		table: selectedTable || '?',
+		time: time,
+		items: [...cart],
+		total: total,
+		num: orderCount,
+	});
+	localStorage.setItem('restaurantOrders', JSON.stringify(savedOrders));
 	// Telegram ga yuborish
 	const token = '8523116979:AAEvyNdbZolsXDujxoeCT5-aAuZ_0XlNhno';
 	const chatId = '7870574525';
@@ -151,10 +161,66 @@ function placeOrder() {
 	overlay.classList.remove('active');
 
 	document.getElementById('successModal').classList.add('active');
+	currentOrderNum = orderCount;
+	statusChecker = setInterval(checkOrderStatus, 2000);
 }
 // Close success
 function closeSuccess() {
 	document.getElementById('successModal').classList.remove('active');
+	clearInterval(statusChecker);
+}
+
+let statusChecker = null;
+let currentOrderNum = null;
+
+function checkOrderStatus() {
+	if (!currentOrderNum) return;
+
+	const orders = JSON.parse(localStorage.getItem('restaurantOrders')) || [];
+	const order = orders.find(o => o.num === currentOrderNum);
+	const isReady = localStorage.getItem('orderReady_' + currentOrderNum) === 'true';
+
+	if (!order) return;
+
+	if (isReady || order.status === 'ready') {
+		document.getElementById('step1').classList.remove('active');
+		document.getElementById('step1').classList.add('done');
+		document.getElementById('step2').classList.remove('active');
+		document.getElementById('step2').classList.add('done');
+		document.getElementById('step3').classList.add('active');
+		document.getElementById('line1').classList.add('done');
+		document.getElementById('line2').classList.add('done');
+
+		document.getElementById('successTitle').textContent = '🎉 Taomingiz tayyor!';
+		document.getElementById('successDesc').textContent = 'Olib keling yoki hodim olib keladi!';
+		document.getElementById('successBtn').style.display = 'block';
+
+		clearInterval(statusChecker);
+		playReadySound();
+	} else if (order.status === 'preparing') {
+		document.getElementById('step1').classList.remove('active');
+		document.getElementById('step1').classList.add('done');
+		document.getElementById('step2').classList.add('active');
+		document.getElementById('line1').classList.add('active');
+	}
+}
+
+function playReadySound() {
+	try {
+		const ctx = new AudioContext();
+		[523, 659, 784].forEach((freq, i) => {
+			setTimeout(() => {
+				const osc = ctx.createOscillator();
+				const gain = ctx.createGain();
+				osc.connect(gain);
+				gain.connect(ctx.destination);
+				osc.frequency.value = freq;
+				gain.gain.value = 0.3;
+				osc.start();
+				setTimeout(() => osc.stop(), 200);
+			}, i * 250);
+		});
+	} catch (e) {}
 }
 // Menu data
 const menuData = [
@@ -378,8 +444,6 @@ window.onload = function () {
 		selectedTable = tableFromUrl;
 		document.getElementById('tableNum').textContent = 'Stol #' + tableFromUrl;
 	}
-
-	document.getElementById('tableModal').style.display = 'none';
 };
 // Buyurtma tarixi
 let orderHistory = [];
